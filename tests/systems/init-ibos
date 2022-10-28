@@ -16,7 +16,7 @@ OUTPUT_FILE_NAME=$3
 
 echo "Removing all identities from $1:$2"
 
-maude <<INPUT |
+maude -no-banner <<INPUT |
 load ${FILE_PATH}.maude
 load ${FULL_MAUDE_PATH}
 loop init .
@@ -37,7 +37,7 @@ OUTPUT_FILE_NAME=$3
 
 echo "Removing unhandled identities from $1:$2"
 
-maude <<INPUT |
+maude -no-banner <<INPUT |
 load ${FILE_PATH}.maude
 load ${FULL_MAUDE_PATH}
 loop init .
