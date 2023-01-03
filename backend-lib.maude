@@ -101,3 +101,28 @@ fmod DUMB-BACKEND-IMPL is
   eq checkVal  ((M,'return-err,ModArgs),MQL,D,F) = errb('this 'error 'is 'expected) .
   eq checkUnsat((M,'return-err,ModArgs),MQL,D,F) = errb('this 'error 'is 'expected) .
 endfm
+
+fmod DEBUG-BACKEND-IMPL is
+  pr RLTOOL-BACKEND .
+
+  var D : ProofMetadata .
+  var MQL : ScopedMapList .
+  var F : QFForm? .
+  var B : MaybeBool .
+  var M : Module .
+  var ModArgs : ModuleList .
+
+  var SolverName Method : Qid .
+  op log-solver : Qid Qid QFForm? MaybeBool -> MaybeBool .
+  eq log-solver(SolverName, Method, F, B) = B [print "SOLVER-" B ": " SolverName ": " Method "(" F ") = " B] .
+
+  ---- op checkVal : ScopedMap ScopedMapList ProofMetadata QFForm? -> MaybeBool .
+
+  eq checkVal  ((M,'debug-varunif,ModArgs),MQL,D,F) = log-solver('varunif, 'valid, F, checkVal  ((M,'varunif,ModArgs),MQL,D,F)) .
+  eq checkUnsat((M,'debug-varunif,ModArgs),MQL,D,F) = log-solver('varunif, 'unsat, F, checkUnsat((M,'varunif,ModArgs),MQL,D,F)) .
+  eq checkVal  ((M,'debug-varsat, ModArgs),MQL,D,F) = log-solver('varsat, 'valid, F, checkVal  ((M,'varsat,ModArgs),MQL,D,F)) .
+  eq checkUnsat((M,'debug-varsat, ModArgs),MQL,D,F) = log-solver('varsat, 'unsat, F, checkUnsat((M,'varsat,ModArgs),MQL,D,F)) .
+  eq checkVal  ((M,'debug-conrew, ModArgs),MQL,D,F) = log-solver('conrew, 'valid, F, checkVal  ((M,'conrew,ModArgs),MQL,D,F)) .
+  eq checkUnsat((M,'debug-conrew, ModArgs),MQL,D,F) = log-solver('conrew, 'unsat, F, checkUnsat((M,'conrew,ModArgs),MQL,D,F)) .
+endfm
+

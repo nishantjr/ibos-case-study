@@ -16,6 +16,7 @@ fmod RLTOOL-BACKEND-IMPL is
   pr VAR-SAT-BACKEND-IMPL .
   pr IMP-SIMP-BACKEND-IMPL .
   pr CONTEXT-REW-BACKEND-IMPL .
+  pr DEBUG-BACKEND-IMPL .
 endfm
 
 --- load frontend stuff here
