@@ -101,6 +101,7 @@ loop rltl-init .
 (start-proof .)
 
 (auto .)
+(auto .)
 
 --- --- change-display, nic1
 --- (auto .)
